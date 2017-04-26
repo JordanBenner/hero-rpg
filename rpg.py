@@ -1,22 +1,14 @@
 #!/usr/bin/env python3
-
-"""
-In this simple RPG game, the hero fights the goblin. He has the options to:
-
-1. fight goblin
-2. do nothing - in which case the goblin will attack him anyway
-3. flee
-
-"""
+from random import randint
 
 
 class Character:
-    def __init__(self, health, power):
+    def __init__(self):
         self.health = 10
         self.power = 5
 
-    def attack(enemy):
-        print(self.attack(enemy))
+    def attack(self, enemy):
+        enemy.health -= self.power
 
     def print_status(self):
         print("You have {} health and {} power.".format(self.health, self.power))
@@ -26,14 +18,17 @@ class Character:
             return True
 
 
-class hero(Character):
-    def __init__(self, health, power):
+class Hero(Character):
+    def __init__(self):
         self.health = 10
-        self.power = 5.
+        self.power = 5
         self.name = "Hero"
 
-    def attack(enemy):
-        print(hero.attack(enemy))
+    def attack(self, enemy):
+        damage = self.power
+        if randint(0, 4) == 4:
+            damage = damage * 2
+            enemy.health -= damage
 
     def print_status(self):
         print("You have {} health and {} power.".format(hero.health, hero.power))
@@ -43,14 +38,11 @@ class hero(Character):
             return True
 
 
-class goblin(Character):
-    def __init__(self, health, power):
+class Goblin(Character):
+    def __init__(self):
         self.health = 6
         self.power = 2
         self.name = "goblin"
-
-    def attack(hero):
-        print(goblin.attack(hero))
 
     def print_status(self):
         print("The goblin has {} health and {} power.".format(
@@ -61,48 +53,84 @@ class goblin(Character):
             return True
 
 
-class zombie(Character):
-    def __int__(self, health, power):
+class Zombie(Character):
+    def __int__(self):
         self.health = 6
-        self.power = 3
+        self.power = 1
         self.name = "zombie"
 
     def alive(self):
         return True
 
 
-hero = hero('10', '5')
-goblin = zombie('6', '2')
+class Medic(Character):
+    def __init__(self):
+        self.health = 10
+        self.power = 3
+        self.name = "medic"
+
+    def health_status(self):
+        if randomint(0, 4) == 4:
+            medic.health += 2
+
+    def alive():
+        if self.health > 0:
+            return True
+
+
+class Shadow(Character):
+    def __init__(self):
+        self.health = 1
+        self.power = 6
+        self.name = 'shadow'
+        self.evasion = 10
+
+    def damage(self):
+        heahlth = self.health
+        if randomint(0, 9) == 9:
+            shadow.health += 1
+
+    def when_attacked(self):
+        damage = self.power
+        if self.evasion > 10:
+            if randomint(0, 9) == 9:
+                self.health -= damage
+
+    def alive():
+        if self.health > 0:
+            return True
+
+
+hero = Hero()
+goblin = Zombie()
 
 
 def main():
 
     while hero.alive() and goblin.alive():
+        hero.print_status()
         print()
         print("What do you want to do?")
         print("1. fight zombie")
-        print("2. do nothing")
-        print("3. flee")
+        print("2. run in circles")
+        print("3. book it")
         print("> ", end=' ')
         inpt = input()
-
+        print()
         if inpt == "1":
-            # Hero attacks goblin
-            goblin.health -= hero.power
+            hero.attack(goblin)
             print("You do {} damage to the zombie.".format(hero.power))
-        if goblin.alive():
-            print("The zombie won't die!")
         elif inpt == "2":
+            print("Dont look")
             pass
         elif inpt == "3":
             print("Goodbye.")
-            break
+            exit(0)
         else:
             print("Invalid inpt {}".format(inpt))
 
         if goblin.alive():
-            # Goblin attacks hero
-            hero.health -= goblin.power
+            goblin.attack(hero)
             print("The zombie does {} damage to you.".format(goblin.power))
         if hero.health <= 0:
             print("You are being eaten.")
