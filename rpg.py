@@ -20,6 +20,7 @@ class Character:
 
 class Hero(Character):
     def __init__(self):
+        super().__init__()
         self.health = 10
         self.power = 5
         self.name = "Hero"
@@ -30,31 +31,18 @@ class Hero(Character):
             damage = damage * 2
             enemy.health -= damage
 
-    def print_status(self):
-        print("You have {} health and {} power.".format(hero.health, hero.power))
-
-    def alive(self):
-        if self.health > 0:
-            return True
-
 
 class Goblin(Character):
     def __init__(self):
+        super().__init__()
         self.health = 6
         self.power = 2
         self.name = "goblin"
 
-    def print_status(self):
-        print("The goblin has {} health and {} power.".format(
-            goblin.health, goblin.power))
-
-    def alive(self):
-        if goblin.health > 0:
-            return True
-
 
 class Zombie(Character):
     def __int__(self):
+        super().__init__()
         self.health = 6
         self.power = 1
         self.name = "zombie"
@@ -65,6 +53,7 @@ class Zombie(Character):
 
 class Medic(Character):
     def __init__(self):
+        super().__init__()
         self.health = 10
         self.power = 3
         self.name = "medic"
@@ -73,13 +62,10 @@ class Medic(Character):
         if randomint(0, 4) == 4:
             medic.health += 2
 
-    def alive():
-        if self.health > 0:
-            return True
-
 
 class Shadow(Character):
     def __init__(self):
+        super().__init__()
         self.health = 1
         self.power = 6
         self.name = 'shadow'
@@ -96,9 +82,12 @@ class Shadow(Character):
             if randomint(0, 9) == 9:
                 self.health -= damage
 
-    def alive():
-        if self.health > 0:
-            return True
+    def Wizard(Character):
+        def __init__(self):
+            super().__init__()
+            self.health = 7
+            self.power = 10
+            self.name = 'wizard'
 
 
 hero = Hero()
